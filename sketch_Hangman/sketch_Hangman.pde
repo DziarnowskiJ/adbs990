@@ -3,7 +3,7 @@ SoundFile ding, click, right, wrong, lose, win, close;
 
 String[] words;    //words from file, to singleplayer
 
-String word;  //word to guess
+String word;    //word to guess
 String wrongLetters; 
 String rightLetters;
 
@@ -19,13 +19,13 @@ String answer;
 
 color background = #C4C4C4;
 float scaleHangman;    //change size of hangman drawing
-float xHangman;     //change x-coordinate of hangman drawing
+float xHangman;    //change x position of hangman drawing
 
 Button resetButton, exitButton, singleButton, multiButton;
 
 void setup() {
   scaleHangman = 1.3;
-  xHangman = width/4;
+  xHangman = width/3;
   gameStatus = 0;
   playSound = 0;
 
@@ -65,11 +65,10 @@ void setup() {
 
 void draw() {
   background(background);
-
   textAlign(CENTER);
 
   if (gameStatus == 0) {    //chosing singleplayer/multiplayer
-    startScreen();
+    startText();
 
     singleButton.above();
     singleButton.display();
@@ -113,6 +112,18 @@ void draw() {
   }
 }
 
+void startText() {
+  textSize(35);
+  text("HANGMAN", width/2, 100);
+  textSize(15);
+  text("Chose the game mode you want to play:", width/2, height/2-100);
+
+  textAlign(RIGHT);    //author
+  textSize(12);
+  text("Game by:", width-10, height-25);
+  text("JAKUB DZIARNOWSKI", width-10, height-10);
+}
+
 void gameFeatures() {
   fill(0);
   textSize(15);
@@ -127,18 +138,6 @@ void gameFeatures() {
     textSize(12);
     text("Wrong letters:", 10, 80);
   }
-}
-
-void startScreen() {
-  textSize(35);
-  text("HANGMAN", width/2, 100);
-  textSize(15);
-  text("Chose the game mode you want to play:", width/2, height/2-100);
-
-  textAlign(RIGHT);    //author
-  textSize(12);
-  text("Game by:", width-10, height-25);
-  text("JAKUB DZIARNOWSKI", width-10, height-10);
 }
 
 void drawLetterLines() {    //drawing lines below letters to guess
@@ -185,6 +184,7 @@ void endGameInfo() {
   }
 }
 
+
 //SETTING WORDS
 void choseWord() {
   word = words[int(random(words.length))].toUpperCase();
@@ -198,6 +198,6 @@ void choseMultiWord() {
   textSize(12);
   text("Your word:", width/2, height/2-25);
 
-  textSize(30);
-  text(word.toUpperCase(), width/2, height/2+10);
+  textSize(20);
+  text(word.toUpperCase(), width/2, height/2);
 }
