@@ -1,17 +1,17 @@
 //GIVING AN ANSWER
 void keyPressed() {
   if (key != CODED && key != ' ') {    //preventing to put spaces and save coded keys as word (eg. Ctrl, Alt, Shift)
-    if (word.length() <= 19) {    //prevents the word from getting to long
-      if (gameStatus == 2) {    //set word for multiplayer    
+  
+    if (gameStatus == 2) {    //set word for multiplayer    
+      if (word.length() <= 19) {    //prevents the word from getting to long
         ding.play(); 
-        word = word + str(key).toUpperCase();
+        word = word + str(key).toUpperCase();    //set up a word
+        
         if (key == BACKSPACE && word.length() >= 2) {    //removing letters 
           word = word.substring(0, word.length()-2);
-          if (word.length() == 0) {    //if word was completely removed, write "" instead of null
-            word = "";
-          }
         }
-        if (key == ENTER && word.length() >= 2) {    //submitting a word
+
+        if ((key == ENTER || key == RETURN) && word.length() >= 2) {    //submitting a word (ENTER for PC, RETURN for Mac)
           word = word.substring(0, word.length()-1);
 
           click.play();
@@ -19,7 +19,7 @@ void keyPressed() {
           gameStatus = 3;
         }
       }
-      if (word.length() >= 20){    //when word gets to long 
+      if (word.length() >= 20) {    //when word gets to long 
         wrong.play();
         word = word.substring(0, 19);
       }
