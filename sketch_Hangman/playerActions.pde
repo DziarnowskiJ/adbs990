@@ -1,21 +1,26 @@
 //GIVING AN ANSWER
 void keyPressed() {
   if (key != CODED && key != ' ') {    //preventing to put spaces and save coded keys as word (eg. Ctrl, Alt, Shift)
-    if (gameStatus == 2) {    //set word for multiplayer    
-      ding.play(); 
-      word = word + str(key).toUpperCase();
-      if (key == BACKSPACE && word.length() >= 2) {    //removing letters 
-        word = word.substring(0, word.length()-2);
-        if (word.length() == 0) {    //if word was completely removed, make it "" instead of null
-          word = "";
+    if (gameStatus == 2) {    //set word for multiplayer 
+      if (word.length() <= 18 || (key == BACKSPACE || key == ENTER)) {  //word must be shorter than 19 characters
+        ding.play(); 
+        word = word + str(key).toUpperCase();
+        if (key == BACKSPACE && word.length() >= 2) {    //removing letters 
+          word = word.substring(0, word.length()-2);
+          if (word.length() == 0) {    //if word was completely removed, make it "" instead of null
+            word = "";
+          }
         }
-      }
-      if (key == ENTER && word.length() >= 2) {    //submitting a word
-        word = word.substring(0, word.length()-1);
+        if (key == ENTER && (word.length() >= 2 && word.length() <= 20)) {    //submitting a word
+          word = word.substring(0, word.length()-1);
 
-        click.play();
+          click.play();
 
-        gameStatus = 3;
+          gameStatus = 3;
+        }
+      } else if (word.length() >= 19) {
+        wrong.play();
+        word = word.substring(0, 19);
       }
     }
 

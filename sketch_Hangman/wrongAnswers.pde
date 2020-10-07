@@ -9,7 +9,7 @@ void writeWrongLetters() {
 void drawHangmanParts() {    //draw hangman
   pushMatrix();
   strokeWeight(5);
-  translate(10, height-10);
+  translate(xHangman, height-10);
   scale(scaleHangman);
   if (wrongCounter >= 1) {    //base
     line(0, 0, 100, 0);

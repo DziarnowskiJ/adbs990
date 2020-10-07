@@ -21,8 +21,8 @@ class Button {
   void above() {
     if (dist(mouseX, mouseY, center.x, center.y) < radius) {    //mouse above button
       above = true;
-      radius = initRadius*1.1;
-      fontSize = initFontSize*1.1;
+      radius = initRadius*1.2;
+      fontSize = initFontSize*1.2;
     } else if (dist(mouseX, mouseY, center.x, center.y) > radius) {    //mouse somewhere else
       above = false;
       radius = initRadius;
