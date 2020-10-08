@@ -6,6 +6,7 @@ String[] words;    //words from file, to singleplayer
 String word;    //word to guess
 String wrongLetters; 
 String rightLetters;
+String message;
 
 int gameStatus;    // 0 = chose mode, 1 = single, 2 = multiSetup, 3= multiGame, 4 = end
 
@@ -28,6 +29,7 @@ void setup() {
   xHangman = width/3;
   gameStatus = 0;
   playSound = 0;
+  message = "";
 
   words = loadStrings("data/words.txt");
 
@@ -83,6 +85,8 @@ void draw() {
     writeWrongLetters();
     drawHangmanParts();
 
+    againMessage();
+
     endGameInfo();
   }
 
@@ -122,6 +126,12 @@ void startText() {
   textSize(12);
   text("Game by:", width-10, height-25);
   text("JAKUB DZIARNOWSKI", width-10, height-10);
+}
+
+void againMessage() {  //when letter is used again
+  fill(255, 0, 0);
+  textAlign(CENTER);
+  text(message, width/2, height/4);
 }
 
 void gameFeatures() {
@@ -188,6 +198,9 @@ void endGameInfo() {
 //SETTING WORDS
 void choseWord() {
   word = words[int(random(words.length))].toUpperCase();
+  while (word == ""){
+    word = words[int(random(words.length))].toUpperCase();
+  }
 }
 
 void choseMultiWord() {

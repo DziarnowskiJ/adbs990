@@ -1,51 +1,57 @@
 //GIVING AN ANSWER
 void keyPressed() {
-  if (key != CODED && key != ' ') {    //preventing to put spaces and save coded keys as word (eg. Ctrl, Alt, Shift)
-  
+  if ((key != DELETE && key != CODED) && key != ' ') {    //preventing to put spaces and coded keys as letters of word (eg. Ctrl, Alt, Shift)
+
     if (gameStatus == 2) {    //set word for multiplayer    
-      if (word.length() <= 19) {    //prevents the word from getting to long
-        ding.play(); 
+      ding.play(); 
+
+      if (key >= '0' && key <= 'z') {  //allow only letters and numbers
         word = word + str(key).toUpperCase();    //set up a word
-        
-        if (key == BACKSPACE && word.length() >= 2) {    //removing letters 
-          word = word.substring(0, word.length()-2);
-        }
+      }
 
-        if ((key == ENTER || key == RETURN) && word.length() >= 2) {    //submitting a word (ENTER for PC, RETURN for Mac)
+      if (key == BACKSPACE) {    //removing letters
+        if (word.length() >= 1) {
           word = word.substring(0, word.length()-1);
-
-          click.play();
-
-          gameStatus = 3;
+        } else if (word.length() <= 1) {
+          word = "";
         }
       }
-      if (word.length() >= 20) {    //when word gets to long 
+
+      if ((key == ENTER || key == RETURN) && word.length() >= 1) {    //submitting a word (ENTER for PC, RETURN for Mac)
+        click.play();
+
+        gameStatus = 3;
+      }
+
+      if (word.length() >= 20) {    //prevents the word from getting to long
         wrong.play();
         word = word.substring(0, 19);
       }
     }
 
-    if (gameStatus == 1 || gameStatus ==3) {    //game is played (singleplayer or multiplayer)
-      if (key != ENTER) {
+    if (gameStatus == 1 || gameStatus ==3) {    //game is running (singleplayer or multiplayer)
+      if (key >= '0' && key <= 'z') {
+
         answer = str(key).toUpperCase();
-        if (word.indexOf(answer) >= 0) {    //correct letter
-          if (rightLetters.indexOf(answer)  == -1) {    //check if the right letter was used before
-            rightLetters = rightLetters + answer;
 
-            right.play();
-          }
+        if (wrongLetters.indexOf(answer) >= 0 || rightLetters.indexOf(answer) >= 0) {  //check if the letter was used before
+          message = "This letter was already used!";
+          wrong.play();
+        } else if (word.indexOf(answer) >= 0) {    //correct letter
+          rightLetters = rightLetters + answer;  
+          message = "";
+          right.play();
         } else if (word.indexOf(answer) == -1) {    //wrong letter
-          if (wrongLetters.indexOf(answer) == -1) {    //check if the wrong letter was used before
-            wrongLetters = wrongLetters + " " + answer;
-            wrongCounter++;
-
-            wrong.play();
-          }
+          wrongLetters = wrongLetters + " " + answer;
+          wrongCounter++;
+          message = "";
+          wrong.play();
         }
       }
     }
   }
 }
+
 
 
 //CHOOSING A BUTTON
