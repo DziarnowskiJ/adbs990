@@ -199,7 +199,7 @@ void endGameInfo() {
 void choseWord() {
   word = words[int(random(words.length))].toUpperCase();
   while (word == ""){
-    word = words[int(random(words.length))].toUpperCase();
+    word = words[int(random(2, words.length))].toUpperCase();
   }
 }
 

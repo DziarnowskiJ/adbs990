@@ -1,3 +1,4 @@
+-- Write one word per line, don't use spaces--
 london
 city
 university
