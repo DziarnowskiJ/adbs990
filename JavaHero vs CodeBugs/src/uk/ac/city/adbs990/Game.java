@@ -84,7 +84,7 @@ public class Game {
             // Open an audio input stream
             gameMusic = new SoundClip("data/sounds/gameMusic.wav");
             // Set it to continuous playback (looping)
-//            gameMusic.loop();
+            gameMusic.loop();
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             System.out.println(e);
         }
