@@ -1,11 +1,10 @@
 package uk.ac.city.adbs990.hero;
 
 import city.cs.engine.*;
-import uk.ac.city.adbs990.levels.GameLevel;
-import uk.ac.city.adbs990.tools.DynamicImages;
-import uk.ac.city.adbs990.tools.DelayedDestroy;
 import uk.ac.city.adbs990.Game;
-import uk.ac.city.adbs990.bug.Bug;
+import uk.ac.city.adbs990.levels.GameLevel;
+import uk.ac.city.adbs990.tools.DelayedDestroy;
+import uk.ac.city.adbs990.tools.DynamicImages;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -170,8 +169,7 @@ public class Hero extends Walker {
     public void loseHealth(int damage){
         //play the sound of taking damage
         heroHurt.play();
-
-
+        
         if (currentHealth - damage > 0) {
             //update health
             currentHealth = currentHealth - damage;

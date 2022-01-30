@@ -85,11 +85,10 @@ public class Game {
             gameMusic = new SoundClip("data/sounds/gameMusic.wav");
             // Set it to continuous playback (looping)
             gameMusic.loop();
+            soundList.add(gameMusic);
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             System.out.println(e);
         }
-        soundList.add(gameMusic);
-
 
     /* create the world */
         level = new Level1(this);
@@ -186,7 +185,6 @@ public class Game {
         each time they are opened, to
         properly update them and their components
          */
-
         switch (state) {
             //GAME
             case 1:
