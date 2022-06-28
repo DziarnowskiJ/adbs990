@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="solitaire:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/solitaire_jar</output-path>
+    <root id="archive" name="solitaire.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/out/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="solitaire" />
+      <element id="library" level="project" name="flatlaf-2.0.1" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../solitare/CityEngine40/CityEngine.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
